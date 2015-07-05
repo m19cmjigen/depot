@@ -16,14 +16,6 @@ class LineItemsControllerTest < ActionController::TestCase
     assert_response :success
   end
 
-  test "should create line_item" do
-    assert_difference('LineItem.count') do
-      post :create, product_id: products(:ruby).id
-    end
-
-    assert_redirected_to cart_path(assigns(:line_item).cart)
-  end
-
   test "should show line_item" do
     get :show, id: @line_item
     assert_response :success
@@ -39,11 +31,23 @@ class LineItemsControllerTest < ActionController::TestCase
     assert_redirected_to line_item_path(assigns(:line_item))
   end
 
-  test "should destroy line_item" do
-    assert_difference('LineItem.count', -1) do
-      delete :destroy, id: @line_item
+  test "should create line_item" do
+    assert_difference('LineItem.count') do
+      post :create, product_id: products(:ruby).id
     end
 
-    assert_redirected_to line_items_path
+    assert_redirected_to store_path
+  end
+
+
+  test "should create line_item via ajax" do
+    assert_difference('LineItem.count') do
+      xhr :post, :create, product_id: products(:ruby).id
+    end
+
+    assert_response :success
+    assert_select_jquery :html, '#cart' do
+      assert_select 'tr#current_item td', /Programming Ruby 1.9/
+    end
   end
 end

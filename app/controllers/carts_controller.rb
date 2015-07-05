@@ -69,7 +69,7 @@ class CartsController < ApplicationController
     @cart.destroy
     session[:cart_id] = nil
     respond_to do |format|
-      format.html { redirect_to store_url, notice: 'カートは現在空です。' }
+      format.html { redirect_to store_url }
       format.json { head :ok }
     end
   end
