@@ -18,8 +18,6 @@ gem 'jquery-rails'
 gem 'turbolinks'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 2.0'
-# bundle exec rake doc:rails generates the API under doc/api.
-gem 'sdoc', '~> 0.4.0', group: :doc
 
 gem "jquery-ui-rails"
 
@@ -42,8 +40,9 @@ group :development, :test do
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
   # Use sqlite3 as the database for Active Record
-  # gem 'sqlite3'
-  gem 'pg'
+  gem 'sqlite3'
+  # bundle exec rake doc:rails generates the API under doc/api.
+  gem 'sdoc', '~> 0.4.0', group: :doc
 end
 
 group :production do
